@@ -6,29 +6,30 @@ const axios = require('axios');
 
 app.use(express.static(path.join(__dirname, '../public')));
 
-// app.get('/user', (req, res) => {
-//   axios.get('http://localhost:1337')
-//     .then((innerRes) => {
-//       res.writeHead(200);
-//       // console.log(innerRes.data);
-//       // res.write(JSON.stringify(innerRes.data));
-//       res.send(innerRes.data);
-//       res.end();
-//     })
-//     .catch((err) => {console.log(err)});
-// });
+app.get('/user', (req, res) => {
+  // console.log(req.url);
+  axios.get('http://34.211.165.53:1337' + req.url)
+    .then((innerRes) => {
+      res.writeHead(200);
+      // console.log(innerRes.data);
+      // res.write(JSON.stringify(innerRes.data));
+      res.send(innerRes.data);
+      res.end();
+    })
+    .catch((err) => {console.log(err)});
+});
 
-// app.post('/user', (req, res) => {
-//   axios.post('http://localhost:1337' + req.url)
-//     .then((innerRes) => {
-//       res.writeHead(200);
-//       console.log(innerRes.data);
-//       // res.write(JSON.stringify(innerRes.data));
-//       res.send(innerRes.data);
-//       res.end();
-//     })
-//     .catch((err) => {console.log(err)});
-// });
+app.post('/user', (req, res) => {
+  axios.post('http://34.211.165.53:1337' + req.url)
+    .then((innerRes) => {
+      res.writeHead(200);
+      console.log(innerRes.data);
+      // res.write(JSON.stringify(innerRes.data));
+      res.send(innerRes.data);
+      res.end();
+    })
+    .catch((err) => {console.log(err)});
+});
 
 app.get('/v1/api/:accommodationId/reviews', (req,res) => {
   axios.get('http://localhost:2020' + req.url)
